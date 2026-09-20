@@ -3,7 +3,7 @@ use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
 #[derive(Parser)]
-#[command(name = "sparsebundle")]
+#[command(name = "sparsebundle-tools")]
 #[command(about = "Read, analyse and stream Apple sparsebundle disk images")]
 #[command(version)]
 struct Cli {
@@ -41,12 +41,12 @@ fn main() -> Result<()> {
 
     match cli.command {
         Command::Info { path } => {
-            let analysis = sparsebundle::analyse(&path)?;
+            let analysis = sparsebundle_tools::analyse(&path)?;
             print!("{}", analysis.render());
         }
         Command::Bands { path } => {
-            let analysis = sparsebundle::analyse(&path)?;
-            let band_list = sparsebundle::bands(&path)?;
+            let analysis = sparsebundle_tools::analyse(&path)?;
+            let band_list = sparsebundle_tools::bands(&path)?;
             println!(
                 "{} bands, band size {} bytes ({} MiB)",
                 band_list.len(),
@@ -62,8 +62,8 @@ fn main() -> Result<()> {
             }
         }
         Command::Read { path, offset, len } => {
-            let analysis = sparsebundle::analyse(&path)?;
-            let data = sparsebundle::read_at(&path, analysis.band_size, offset, len)?;
+            let analysis = sparsebundle_tools::analyse(&path)?;
+            let data = sparsebundle_tools::read_at(&path, analysis.band_size, offset, len)?;
             // Write raw bytes to stdout for piping
             use std::io::Write;
             std::io::stdout().write_all(&data)?;

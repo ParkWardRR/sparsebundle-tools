@@ -1,10 +1,10 @@
 [package]
-name = "sparsebundle"
+name = "sparsebundle-tools"
 version = "0.1.0"
 edition = "2021"
 description = "Read, analyse and stream Apple sparsebundle disk images"
 license = "BlueOak-1.0.0"
-repository = "https://github.com/ParkWardRR/sparsebundle"
+repository = "https://github.com/ParkWardRR/sparsebundle-tools"
 keywords = ["apple", "sparsebundle", "disk-image", "time-machine", "hfs"]
 categories = ["filesystem", "parser-implementations"]
 
